@@ -46,9 +46,14 @@ export const getMe = async (req, res) => {
   res.json({ user: { id: req.user._id, name: req.user.name, email: req.user.email, avatar: req.user.avatar } });
 };
 
+const ALLOWED_FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+
 export const googleCallback = (req, res) => {
   const token = generateToken(req.user._id);
   const user = { id: req.user._id, name: req.user.name, email: req.user.email, avatar: req.user.avatar };
-  // Redirect to frontend with token
-  res.redirect(`http://localhost:5173/auth/callback?token=${token}&user=${encodeURIComponent(JSON.stringify(user))}`);
+  // Use allowlisted frontend URL — never use user-supplied redirect targets
+  const redirectUrl = new URL('/auth/callback', ALLOWED_FRONTEND_URL);
+  redirectUrl.searchParams.set('token', token);
+  redirectUrl.searchParams.set('user', JSON.stringify(user));
+  res.redirect(redirectUrl.toString());
 };

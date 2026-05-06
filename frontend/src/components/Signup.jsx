@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import { useAuth } from '../context/AuthContext';
 
 function Signup() {
@@ -19,7 +19,7 @@ function Signup() {
     }
     setLoading(true);
     try {
-      const { data } = await axios.post('http://localhost:5000/api/auth/signup', form);
+      const { data } = await api.post('/auth/signup', form);
       login(data.token, data.user);
       navigate('/');
     } catch (err) {
@@ -77,7 +77,7 @@ function Signup() {
 
         <div className="auth-divider"><span>or</span></div>
 
-        <a href="http://localhost:5000/api/auth/google" className="google-btn">
+        <a href={`${import.meta.env.VITE_API_URL}/auth/google`} className="google-btn">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="20" />
           Continue with Google
         </a>

@@ -16,7 +16,7 @@ router.get('/google', (req, res, next) => {
 
 router.get('/google/callback', (req, res, next) => {
   passport.authenticate('google', {
-    failureRedirect: 'http://localhost:5173/login?error=oauth_failed',
+    failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=oauth_failed`,
     session: false
   })(req, res, next);
 }, googleCallback);
