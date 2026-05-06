@@ -70,7 +70,7 @@ function Login() {
 
         <div className="auth-divider"><span>or</span></div>
 
-        <a href={`${import.meta.env.VITE_API_URL}/auth/google`} className="google-btn">
+        <a href={`${import.meta.env.VITE_API_URL || '/api'}/auth/google`} className="google-btn">
           <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="20" />
           Continue with Google
         </a>
