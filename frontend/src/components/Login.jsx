@@ -32,7 +32,7 @@ function Login() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-header">
-          <h1>📰 NewsSentiment</h1>
+          <h1>📡 PulseNews <span style={{background:'linear-gradient(135deg,#6366f1,#8b5cf6)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>AI</span></h1>
           <p>Sign in to your account</p>
         </div>
 

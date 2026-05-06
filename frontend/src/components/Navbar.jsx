@@ -20,7 +20,10 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <Link to="/" className="nav-brand">📰 NewsSentiment</Link>
+      <Link to="/" className="nav-brand">
+        <span className="brand-icon">📡</span>
+        <span className="brand-text">PulseNews <span className="brand-tag">AI</span></span>
+      </Link>
       <div className="nav-links">
         <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
         <Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}>📊 Dashboard</Link>
