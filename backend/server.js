@@ -23,20 +23,19 @@ app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(passport.initialize());
 
-// API routes
+// API routes first
 app.use('/api/auth', authRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/favorites', favoriteRoutes);
 
-// Serve frontend in production
-if (process.env.NODE_ENV === 'production') {
-  const frontendDist = path.join(__dirname, '../frontend/dist');
-  console.log('Serving frontend from:', frontendDist);
-  app.use(express.static(frontendDist));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendDist, 'index.html'));
-  });
-}
+// Serve frontend static files (always, not just in production)
+const frontendDist = path.join(__dirname, '../frontend/dist');
+app.use(express.static(frontendDist));
+
+// All non-API routes → React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendDist, 'index.html'));
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
