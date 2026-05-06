@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useAuth } from '../context/AuthContext';
 
 function Favorites() {
@@ -7,12 +7,12 @@ function Favorites() {
   const { getAuthHeaders } = useAuth();
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/favorites', { headers: getAuthHeaders() })
+    api.get('/favorites', { headers: getAuthHeaders() })
       .then(res => setFavorites(res.data));
   }, []);
 
   const removeFav = (id) => {
-    axios.delete(`http://localhost:5000/api/favorites/${id}`, { headers: getAuthHeaders() })
+    api.delete(`/favorites/${id}`, { headers: getAuthHeaders() })
       .then(() => setFavorites(favorites.filter(f => f._id !== id)));
   };
 

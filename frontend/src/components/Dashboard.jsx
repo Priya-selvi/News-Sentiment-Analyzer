@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const COLORS = { Positive: '#10b981', Negative: '#ef4444', Neutral: '#6b7280' };
@@ -9,7 +9,7 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/news')
+    api.get('/news')
       .then(res => { setNews(res.data); setLoading(false); });
   }, []);
 

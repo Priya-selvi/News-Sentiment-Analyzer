@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import axios from 'axios';
+import api from '../api';
 import NewsCard from './NewsCard';
 import SearchFilter from './SearchFilter';
 
@@ -37,7 +37,7 @@ function NewsList() {
         return;
       }
     }
-    axios.get('http://localhost:5000/api/news').then(res => {
+    api.get('/news').then(res => {
       setNews(res.data);
       localStorage.setItem(CACHE_KEY, JSON.stringify({ data: res.data, timestamp: Date.now() }));
       setLoading(false);
