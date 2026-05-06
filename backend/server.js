@@ -31,8 +31,8 @@ app.use('/api/favorites', favoriteRoutes);
 // Serve frontend in production
 if (process.env.NODE_ENV === 'production') {
   const frontendDist = path.join(__dirname, '../frontend/dist');
+  console.log('Serving frontend from:', frontendDist);
   app.use(express.static(frontendDist));
-  // All non-API routes serve index.html (React Router)
   app.get('*', (req, res) => {
     res.sendFile(path.join(frontendDist, 'index.html'));
   });
