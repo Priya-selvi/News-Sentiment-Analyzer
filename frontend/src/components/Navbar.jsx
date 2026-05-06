@@ -22,7 +22,7 @@ function Navbar() {
     <nav className="navbar">
       <Link to="/" className="nav-brand">
         <span className="brand-icon">📡</span>
-        <span className="brand-text">PulseNews <span className="brand-tag">AI</span></span>
+        <span className="brand-text">PulseNews</span>
       </Link>
       <div className="nav-links">
         <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
